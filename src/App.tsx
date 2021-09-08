@@ -2,13 +2,14 @@ import React from 'react';
 import './App.css';
 import Todos from './components/todos/todos.component';
 import TodosProvider from './contexts/todos/todosContext';
+import AppContextProvider from './utils/combineContextProviders';
 
 function App() {
   return (
     <div className="App">
-      <TodosProvider>
+      <AppContextProvider providers={[TodosProvider]}>
         <Todos />
-      </TodosProvider>
+      </AppContextProvider>
     </div>
   );
 }
