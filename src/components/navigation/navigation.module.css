@@ -1,0 +1,102 @@
+.navbar {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(71, 70, 70);
+  color: white;
+}
+
+.brandTitle {
+  font-size: 1.5rem;
+  margin: 1rem;
+}
+
+.brandTitle a {
+  color: white;
+}
+
+.navbarLinks {
+  height: 100%;
+}
+
+.navbarLinks ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbarLinks li {
+  list-style: none;
+}
+
+.navbarLinks li a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  padding: 1rem;
+}
+
+.navbarLinks li:hover {
+  background-color: #555;
+}
+
+.toggleButton {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+}
+
+.toggleButton .bar {
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+@media (max-width: 800px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .toggleButton {
+    display: flex;
+  }
+
+  .navbarLinks {
+    display: flex;
+    width: 100%;
+    height: 0;
+    transition: all 0.5s;
+  }
+
+  .navbarLinks ul {
+    width: 100%;
+    flex-direction: column;
+    margin-top: -150px;
+    z-index: -1;
+  }
+
+  .navbarLinks ul li {
+    text-align: center;
+  }
+
+  .navbarLinks ul li a {
+    padding: 0.5rem 1rem;
+  }
+
+  .navbarLinks.active {
+    height: 120px;
+  }
+  .navbarLinks.active ul {
+    margin-top: 0px;
+    z-index: 0;
+  }
+}
