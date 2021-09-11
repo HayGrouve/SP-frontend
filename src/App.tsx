@@ -7,11 +7,12 @@ import About from './components/about/about.component';
 import HistoryTable from './components/history-table.component/history-table.component';
 import Navigation from './components/navigation/navigation.component';
 import Table from './components/table/table.component';
+import FootballFixturesProvider from './contexts/footballFixturesContext';
 
 function App() {
   return (
     <div>
-      <AppContextProvider providers={[TodosProvider]}>
+      <AppContextProvider providers={[TodosProvider, FootballFixturesProvider]}>
         <Router>
           <Navigation />
           <Switch>
