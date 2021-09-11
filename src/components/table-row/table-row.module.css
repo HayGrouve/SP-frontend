@@ -1,0 +1,110 @@
+.center {
+  text-align: center;
+}
+
+.flag {
+  background-color: #333;
+  width: 25px;
+}
+
+.date {
+  font-style: italic;
+  font-size: 1.3em;
+  text-align: center;
+  font-weight: 500;
+  background-color: #976f2b;
+}
+
+.fixtureInfo {
+  position: absolute;
+  left: 5%;
+  display: flex;
+  padding: 10px 15px;
+  background-color: #555;
+  max-width: 90%;
+  z-index: 1;
+  gap: 2rem;
+}
+
+.accentColor {
+  color: #f2b142;
+}
+
+.logo {
+  width: 60%;
+  max-width: 100px;
+  background-color: #f2b142;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.leftSection {
+  max-width: 70%;
+}
+
+.rightSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.loading {
+  width: 10px;
+  height: 3px;
+  background-color: #f2b142;
+  position: relative;
+  animation-name: loading;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes loading {
+  0% {
+    width: 0px;
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    width: 10px;
+    left: 0px;
+    top: 0px;
+  }
+  50% {
+    width: 0px;
+    left: 10px;
+    top: 0px;
+  }
+  75% {
+    width: 10px;
+    left: 0px;
+    top: 0px;
+  }
+  100% {
+    width: 0px;
+    left: 0px;
+    top: 0px;
+  }
+}
+
+/* Print query */
+@media print {
+  .line {
+    border-bottom: 3px solid black;
+  }
+  .scorePrint {
+    color: white;
+  }
+  body {
+    background-color: initial;
+    color: initial;
+  }
+  .flag {
+    background-color: initial;
+  }
+  .date {
+    font-style: initial;
+    font-size: initial;
+    font-weight: initial;
+    background-color: initial;
+  }
+}

@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FootballFixturesContext } from '../../contexts/footballFixturesContext';
-import { FootballFixturesContextStateType } from '../../types/footballFixtures';
+import { TableRow } from '../table-row/table-row.component';
 import styles from './table.module.css';
 
 interface IProps {
@@ -9,21 +9,7 @@ interface IProps {
 
 const Table: React.FC<IProps> = ({ title }) => {
   const id: string = 'table';
-  const { fixtures, setFootballFixtures } = useContext(FootballFixturesContext);
-
-  const [localFixtures, setLocalFixtures] =
-    useState<FootballFixturesContextStateType[]>(fixtures);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const sortFixtures = (fixtures: FootballFixturesContextStateType[]) => {
-    return [...fixtures].sort(function (a, b) {
-      if (a.fixture.timestamp < b.fixture.timestamp) return -1;
-      if (a.fixture.timestamp > b.fixture.timestamp) return 1;
-      if (a.fixture.id < b.fixture.id) return -1;
-      if (a.fixture.id > b.fixture.id) return 1;
-      return 0;
-    });
-  };
+  const { fixtures, isLoading } = useContext(FootballFixturesContext);
 
   const scrollIntoLive = () => {
     const liveElement = document
@@ -32,33 +18,27 @@ const Table: React.FC<IProps> = ({ title }) => {
     window.scroll({ top: liveElement?.top! - 68, behavior: 'smooth' });
   };
 
-  const requestGetFootballFixtures = async () => {
-    setIsLoading(true);
-    const response = await fetch('https://sportpredictapi.herokuapp.com/');
-    const fixtures = await response.json();
-    setFootballFixtures(fixtures);
-    setLocalFixtures(sortFixtures(fixtures));
-    setIsLoading(false);
-  };
-
   useEffect(() => {
-    requestGetFootballFixtures();
-  }, []);
+    console.log(fixtures);
+  }, [fixtures]);
 
-  console.log(localFixtures);
+  if (isLoading.isFirstComponentMount)
+    return (
+      <div>
+        <h1>{title}</h1>
+        <div className={styles.ldsRing}>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    );
 
   return (
     <div id={`${id}-container`}>
       <div className={styles.container}>
         <h1>{title}</h1>
-        {isLoading && (
-          <div className={styles.ldsRing}>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        )}
         <button className={styles.liveButton} onClick={() => scrollIntoLive()}>
           <div className={styles.loading}></div>
           LiveScore
@@ -87,11 +67,11 @@ const Table: React.FC<IProps> = ({ title }) => {
           </tr>
         </thead>
         <tbody>
-          {/* {sortedFixtures.map((fixtureItem, index) => {
+          {fixtures.map((fixtureItem, index) => {
             return (
               <TableRow key={index} index={index} fixtureItem={fixtureItem} />
             );
-          })} */}
+          })}
         </tbody>
       </table>
     </div>

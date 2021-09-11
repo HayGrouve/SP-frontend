@@ -7,7 +7,7 @@ const HistoryTable: React.FC = () => {
   return (
     <div id={`${id}-container`}>
       <h1 className={styles.heading}>History page</h1>
-      <p className={styles.center}>Coming soon...</p>
+      <p className={styles.center}>Coming soon</p>
     </div>
   );
 };

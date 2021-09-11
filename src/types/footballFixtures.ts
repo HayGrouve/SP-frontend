@@ -83,6 +83,7 @@ export type FootballFixturesContextState = {
       }
     ];
   }[];
+  isLoading: { loading: boolean; isFirstComponentMount: boolean };
   setFootballFixtures: (fixtures: FootballFixturesContextStateType[]) => void;
 };
 

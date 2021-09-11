@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import TodosProvider from './contexts/todos/todosContext';
 import AppContextProvider from './utils/combineContextProviders';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import About from './components/about/about.component';
@@ -12,7 +11,7 @@ import FootballFixturesProvider from './contexts/footballFixturesContext';
 function App() {
   return (
     <div>
-      <AppContextProvider providers={[TodosProvider, FootballFixturesProvider]}>
+      <AppContextProvider providers={[FootballFixturesProvider]}>
         <Router>
           <Navigation />
           <Switch>
