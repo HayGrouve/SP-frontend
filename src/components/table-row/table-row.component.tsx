@@ -24,8 +24,8 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
 
   const statusInfo = `${
     status.short === 'FT' || status.short === 'PEN' || status.short === 'AET'
-      ? `${_.isNull(fulltime.home) ? '' : fulltime.home} - ${
-          _.isNull(fulltime.away) ? '' : fulltime.away
+      ? `${_.isNull(fulltime.home) ? goals.home : fulltime.home} - ${
+          _.isNull(fulltime.away) ? goals.away : fulltime.away
         }`
       : `${status.short}${
           _.isNull(status.elapsed) ? '' : ` - ${status.elapsed}'`
@@ -58,9 +58,15 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
         <td>{dtd.length > 6 ? dtd.substr(11, 5) : dtd}</td>
         <td>{teams.home.name}</td>
         <td>{teams.away.name}</td>
-        <td className={styles.center}>{odds[0].odd}</td>
-        <td className={styles.center}>{odds[1].odd}</td>
-        <td className={styles.center}>{odds[2].odd}</td>
+        <td className={styles.center}>
+          {odds.length > 0 && odds[0] ? odds[0].odd : '-'}
+        </td>
+        <td className={styles.center}>
+          {odds.length > 0 && odds[1] ? odds[1].odd : '-'}
+        </td>
+        <td className={styles.center}>
+          {odds.length > 0 && odds[2] ? odds[2].odd : '-'}
+        </td>
         <td className={scoreStyles.join(' ')}>
           {isLive && <div className={styles.loading}></div>}
           {statusInfo}

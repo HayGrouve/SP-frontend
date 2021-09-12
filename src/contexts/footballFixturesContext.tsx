@@ -37,7 +37,8 @@ const FootballFixturesProvider: FC = ({ children }) => {
 
   const requestGetFootballFixtures = useCallback(async () => {
     setIsLoading({ ...isLoading, loading: true });
-    const response = await fetch('https://sportpredictapi.herokuapp.com/');
+    const response = await fetch('http://localhost:5000/');
+    // const response = await fetch('https://sportpredictapi.herokuapp.com/');
     const fixtures = await response.json();
     setFixtures(sortFixtures(fixtures));
     setIsLoading({

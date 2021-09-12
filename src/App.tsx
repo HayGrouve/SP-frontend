@@ -18,6 +18,9 @@ function App() {
             <Route exact path="/">
               <Table title={'Football'} />
             </Route>
+            <Route exact path="/football/global">
+              <Table title={'Football'} isGlobalFootball={true} />
+            </Route>
             <Route path="/about">
               <About />
             </Route>

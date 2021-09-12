@@ -23,7 +23,10 @@ const Navigation: React.FC = () => {
       <div className={`${isMobileView && styles.active} ${styles.navbarLinks}`}>
         <ul>
           <li onClick={() => setIsMobileView(!isMobileView)}>
-            <Link to="/">Home</Link>
+            <Link to="/">Our Football</Link>
+          </li>
+          <li onClick={() => setIsMobileView(!isMobileView)}>
+            <Link to="/football/global">Global Football</Link>
           </li>
           <li onClick={() => setIsMobileView(!isMobileView)}>
             <Link to="/history">History</Link>
