@@ -14,7 +14,7 @@ const PredictionsModal: React.FC<IpredictionsModal> = ({ data, close }) => {
   const timeout = setTimeout(() => {
     close();
     clearTimeout(timeout);
-  }, 15000);
+  }, 30000);
 
   return createPortal(
     <div
