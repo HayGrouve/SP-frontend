@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Fragment, useEffect, useState } from 'react';
 import { FootballFixturesContextStateType } from '../../types/footballFixtures';
+import PredictionsModal from '../predictions-modal/predictionsModal.component';
 
 import styles from './table-row.module.css';
 
@@ -11,7 +12,7 @@ interface ITableRowProps {
 
 export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
   const {
-    fixture: { status },
+    fixture: { status, id },
     league: { country, flag, name, logo },
     odds,
     teams,
@@ -21,6 +22,33 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
   } = fixtureItem;
 
   const [isLive, setIsLive] = useState(false);
+  const [predictionsModalData, setPredictionsModalData] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const getPrediction = async (
+    e: React.MouseEvent<HTMLTableDataCellElement, MouseEvent>
+  ) => {
+    const response = await fetch(
+      `https://api-football-v1.p.rapidapi.com/v3/predictions?fixture=${id}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-RapidAPI-Key':
+            '8c8198bc3fmsh1b23c461c94ca05p19e3c9jsn07c842ff0389',
+          'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
+        },
+      }
+    );
+    const fixtures = await response.json();
+    const data = await {
+      ...fixtures.response[0].predictions.winner,
+      ...fixtures.response[0].predictions.percent,
+      x: e.pageX,
+      y: e.pageY,
+    };
+    setPredictionsModalData(data);
+    setIsModalOpen(true);
+  };
 
   const statusInfo = `${
     status.short === 'FT' || status.short === 'PEN' || status.short === 'AET'
@@ -46,6 +74,9 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
 
   return (
     <Fragment>
+      {isModalOpen && (
+        <PredictionsModal close={setIsModalOpen} data={predictionsModalData} />
+      )}
       {dtd.length > 5 && (
         <tr>
           <td colSpan={10} className={styles.date}>
@@ -82,7 +113,7 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
           )}
         </td>
         <td>{`${country} - ${name}`}</td>
-        <td className={flagStyles.join(' ')}>
+        <td onClick={(e) => getPrediction(e)} className={flagStyles.join(' ')}>
           <img
             className={styles.flag}
             src={flag ? flag : logo}
