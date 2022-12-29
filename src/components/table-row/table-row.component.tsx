@@ -112,7 +112,7 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
             </span>
           )}
         </td>
-        <td>{`${country} - ${name}`}</td>
+        <td className={styles.scorePrint}>{`${country} - ${name}`}</td>
         <td onClick={(e) => getPrediction(e)} className={flagStyles.join(' ')}>
           <img
             className={styles.flag}
