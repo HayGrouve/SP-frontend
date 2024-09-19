@@ -1,9 +1,10 @@
-import _ from 'lodash';
-import React, { Fragment, useEffect, useState } from 'react';
-import { FootballFixturesContextStateType } from '../../types/footballFixtures';
-import PredictionsModal from '../predictions-modal/predictionsModal.component';
+import _ from "lodash";
+import React, { Fragment, useEffect, useState } from "react";
+import { FootballFixturesContextStateType } from "../../types/footballFixtures";
+import PredictionsModal from "../predictions-modal/predictionsModal.component";
 
-import styles from './table-row.module.css';
+import styles from "./table-row.module.css";
+import { rowForecastMap } from "../../utils/combineContextProviders";
 
 interface ITableRowProps {
   index: number;
@@ -32,10 +33,10 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
       `https://api-football-v1.p.rapidapi.com/v3/predictions?fixture=${id}`,
       {
         headers: {
-          'Content-Type': 'application/json',
-          'X-RapidAPI-Key':
-            '8c8198bc3fmsh1b23c461c94ca05p19e3c9jsn07c842ff0389',
-          'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
+          "Content-Type": "application/json",
+          "X-RapidAPI-Key":
+            "8c8198bc3fmsh1b23c461c94ca05p19e3c9jsn07c842ff0389",
+          "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
         },
       }
     );
@@ -51,12 +52,12 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
   };
 
   const statusInfo = `${
-    status.short === 'FT' || status.short === 'PEN' || status.short === 'AET'
+    status.short === "FT" || status.short === "PEN" || status.short === "AET"
       ? `${_.isNull(fulltime.home) ? goals.home : fulltime.home} - ${
           _.isNull(fulltime.away) ? goals.away : fulltime.away
         }`
       : `${status.short}${
-          _.isNull(status.elapsed) ? '' : ` - ${status.elapsed}'`
+          _.isNull(status.elapsed) ? "" : ` - ${status.elapsed}'`
         }`
   }`;
 
@@ -65,10 +66,10 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
 
   useEffect(() => {
     setIsLive(
-      status.short === '1H' ||
-        status.short === 'HT' ||
-        status.short === '2H' ||
-        status.short === 'ET'
+      status.short === "1H" ||
+        status.short === "HT" ||
+        status.short === "2H" ||
+        status.short === "ET"
     );
   }, [status]);
 
@@ -84,36 +85,43 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
           </td>
         </tr>
       )}
-      <tr className={(index + 1) % 7 === 0 ? styles.line : ''}>
+      <tr className={(index + 1) % 7 === 0 ? styles.line : ""}>
         <td>{index + 1}</td>
         <td>{dtd.length > 6 ? dtd.substr(11, 5) : dtd}</td>
         <td>{teams.home.name}</td>
         <td>{teams.away.name}</td>
         <td className={styles.center}>
-          {odds.length > 0 && odds[0] ? odds[0].odd : '-'}
+          {odds.length > 0 && odds[0] ? odds[0].odd : "-"}
         </td>
         <td className={styles.center}>
-          {odds.length > 0 && odds[1] ? odds[1].odd : '-'}
+          {odds.length > 0 && odds[1] ? odds[1].odd : "-"}
         </td>
         <td className={styles.center}>
-          {odds.length > 0 && odds[2] ? odds[2].odd : '-'}
+          {odds.length > 0 && odds[2] ? odds[2].odd : "-"}
         </td>
-        <td className={scoreStyles.join(' ')}>
+        <td className={scoreStyles.join(" ")}>
           {isLive && <div className={styles.loading}></div>}
           {statusInfo}
           {isLive && (
             <span
-              className={isLive ? 'liveScore' : ''}
-              style={{ display: 'block' }}
+              className={isLive ? "liveScore" : ""}
+              style={{ display: "block" }}
             >
-              {`${_.isNull(goals.home) ? '0' : goals.home} - ${
-                _.isNull(goals.away) ? '0' : goals.away
+              {`${_.isNull(goals.home) ? "0" : goals.home} - ${
+                _.isNull(goals.away) ? "0" : goals.away
               }`}
             </span>
           )}
         </td>
+        <td>
+          {rowForecastMap.map((item) => {
+            if (item.rowNumber === index + 1) {
+              return <td key={item.rowNumber}>{item.forecast}</td>;
+            }
+          })}
+        </td>
         <td className={styles.scorePrint}>{`${country} - ${name}`}</td>
-        <td onClick={(e) => getPrediction(e)} className={flagStyles.join(' ')}>
+        <td onClick={(e) => getPrediction(e)} className={flagStyles.join(" ")}>
           <img
             className={styles.flag}
             src={flag ? flag : logo}

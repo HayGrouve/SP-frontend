@@ -14,3 +14,10 @@ export default function AppContextProvider(props: Props) {
     </>
   );
 }
+
+export const rowForecastMap = [
+  {
+    rowNumber: 1,
+    forecast: "1/X",
+  },
+];
