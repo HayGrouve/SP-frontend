@@ -117,7 +117,7 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
           if (item.rowNumber === index + 1) {
             return <td key={item.rowNumber}>{item.forecast}</td>;
           }
-          return null;
+          return <td key={item.rowNumber}></td>;
         })}
         <td className={styles.scorePrint}>{`${country} - ${name}`}</td>
         <td onClick={(e) => getPrediction(e)} className={flagStyles.join(" ")}>
