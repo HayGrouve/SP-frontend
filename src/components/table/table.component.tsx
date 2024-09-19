@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from 'react';
-import { FootballFixturesContext } from '../../contexts/footballFixturesContext';
-import { TableRow } from '../table-row/table-row.component';
-import styles from './table.module.css';
+import React, { useContext, useEffect } from "react";
+import { FootballFixturesContext } from "../../contexts/footballFixturesContext";
+import { TableRow } from "../table-row/table-row.component";
+import styles from "./table.module.css";
 
 interface IProps {
   title?: string;
@@ -9,14 +9,14 @@ interface IProps {
 }
 
 const Table: React.FC<IProps> = ({ title, isGlobalFootball }) => {
-  const id: string = 'table';
+  const id: string = "table";
   const { fixtures, isLoading } = useContext(FootballFixturesContext);
 
   const scrollIntoLive = () => {
     const liveElement = document
-      .querySelector('.liveScore')
+      .querySelector(".liveScore")
       ?.getBoundingClientRect();
-    window.scroll({ top: liveElement?.top! - 68, behavior: 'smooth' });
+    window.scroll({ top: liveElement?.top! - 68, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const Table: React.FC<IProps> = ({ title, isGlobalFootball }) => {
         <thead>
           <tr>
             <th
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
               onClick={() => {
                 window.print();
               }}
@@ -63,6 +63,7 @@ const Table: React.FC<IProps> = ({ title, isGlobalFootball }) => {
             <th className={styles.center}>X</th>
             <th className={styles.center}>2</th>
             <th className={styles.center}>Score</th>
+            <th className={styles.center}>Forecast</th>
             <th>Block</th>
             <th className={styles.center}>Flag</th>
           </tr>
