@@ -113,12 +113,14 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
             </span>
           )}
         </td>
-        {rowForecastMap.map((item) => {
-          if (item.rowNumber === index + 1) {
-            return <td key={item.rowNumber}>{item.forecast}</td>;
-          }
-          return <td key={item.rowNumber}></td>;
-        })}
+        <td>
+          {rowForecastMap.map((item) => {
+            if (item.rowNumber === index + 1) {
+              return <span key={item.rowNumber}>{item.forecast}</span>;
+            }
+            return null;
+          })}
+        </td>
         <td className={styles.scorePrint}>{`${country} - ${name}`}</td>
         <td onClick={(e) => getPrediction(e)} className={flagStyles.join(" ")}>
           <img
