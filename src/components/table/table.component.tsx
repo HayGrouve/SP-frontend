@@ -63,7 +63,7 @@ const Table: React.FC<IProps> = ({ title, isGlobalFootball }) => {
             <th className={styles.center}>X</th>
             <th className={styles.center}>2</th>
             <th className={styles.center}>Score</th>
-            <th className={styles.center}>Forecast</th>
+            <th className={styles.center}>Fcast</th>
             <th>Block</th>
             <th className={styles.center}>Flag</th>
           </tr>
