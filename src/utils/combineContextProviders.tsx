@@ -304,4 +304,176 @@ export const rowForecastMap = [
     rowNumber: 172,
     forecast: "1/2",
   },
+  {
+    rowNumber: 4,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 16,
+    forecast: "X/2",
+  },
+  {
+    rowNumber: 17,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 26,
+    forecast: "1/X",
+  },
+  {
+    rowNumber: 35,
+    forecast: "1/X",
+  },
+  {
+    rowNumber: 42,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 43,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 45,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 46,
+    forecast: "1/X",
+  },
+  {
+    rowNumber: 49,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 54,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 56,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 58,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 64,
+    forecast: "1/X",
+  },
+  {
+    rowNumber: 65,
+    forecast: "X/2",
+  },
+  {
+    rowNumber: 71,
+    forecast: "1/X",
+  },
+  {
+    rowNumber: 72,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 79,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 83,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 89,
+    forecast: "1/X",
+  },
+  {
+    rowNumber: 90,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 93,
+    forecast: "1/X",
+  },
+  {
+    rowNumber: 96,
+    forecast: "1/X",
+  },
+  {
+    rowNumber: 97,
+    forecast: "1/X",
+  },
+  {
+    rowNumber: 98,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 100,
+    forecast: "X/2",
+  },
+  {
+    rowNumber: 102,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 103,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 108,
+    forecast: "1/X",
+  },
+  {
+    rowNumber: 109,
+    forecast: "X/2",
+  },
+  {
+    rowNumber: 110,
+    forecast: "1/X",
+  },
+  {
+    rowNumber: 113,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 114,
+    forecast: "X/2",
+  },
+  {
+    rowNumber: 122,
+    forecast: "1/X",
+  },
+  {
+    rowNumber: 127,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 128,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 143,
+    forecast: "X/2",
+  },
+  {
+    rowNumber: 150,
+    forecast: "1/2",
+  },
+  {
+    rowNumber: 152,
+    forecast: "1/X",
+  },
+  {
+    rowNumber: 155,
+    forecast: "1/X",
+  },
+  {
+    rowNumber: 164,
+    forecast: "X/2",
+  },
+  {
+    rowNumber: 174,
+    forecast: "1/X",
+  },
+  {
+    rowNumber: 175,
+    forecast: "1/X",
+  },
 ];
