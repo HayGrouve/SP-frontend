@@ -66,7 +66,11 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
   const forecastStyles = [styles.center, styles.forecast];
 
   rowForecastMap.forEach((item) => {
-    if (item.rowNumber === index + 1) {
+    if (
+      item.rowNumber === index + 1 &&
+      goals.home !== null &&
+      goals.away !== null
+    ) {
       switch (item.forecast) {
         case "1/X":
           if (goals.home > goals.away || goals.home === goals.away) {
