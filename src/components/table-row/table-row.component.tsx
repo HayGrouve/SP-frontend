@@ -63,6 +63,37 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
 
   const scoreStyles = [styles.center, styles.scorePrint];
   const flagStyles = [styles.center, styles.flag];
+  const forecastStyles = [styles.center, styles.forecast];
+
+  rowForecastMap.forEach((item) => {
+    if (item.rowNumber === index + 1) {
+      switch (item.forecast) {
+        case "1/X":
+          if (goals.home > goals.away || goals.home === goals.away) {
+            forecastStyles.push(styles.bgGreen);
+          } else {
+            forecastStyles.push(styles.bgRed);
+          }
+          break;
+        case "X/2":
+          if (goals.home < goals.away || goals.home === goals.away) {
+            forecastStyles.push(styles.bgGreen);
+          } else {
+            forecastStyles.push(styles.bgRed);
+          }
+          break;
+        case "1/2":
+          if (goals.home > goals.away || goals.home < goals.away) {
+            forecastStyles.push(styles.bgGreen);
+          } else {
+            forecastStyles.push(styles.bgRed);
+          }
+          break;
+        default:
+          break;
+      }
+    }
+  });
 
   useEffect(() => {
     setIsLive(
@@ -80,7 +111,7 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
       )}
       {dtd.length > 5 && (
         <tr>
-          <td colSpan={10} className={styles.date}>
+          <td colSpan={11} className={styles.date}>
             {dtd.substr(0, 10)}
           </td>
         </tr>
@@ -113,7 +144,7 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
             </span>
           )}
         </td>
-        <td className={styles.center}>
+        <td className={forecastStyles.join(" ")}>
           {rowForecastMap.map((item) => {
             if (item.rowNumber === index + 1) {
               return <span key={item.rowNumber}>{item.forecast}</span>;

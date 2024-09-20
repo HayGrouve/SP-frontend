@@ -7,6 +7,18 @@
   width: 25px;
 }
 
+.forecast {
+  background-color: #333;
+}
+
+.bg-red {
+  background-color: #ef4444;
+}
+
+.bg-green {
+  background-color: #10b981;
+}
+
 .date {
   font-style: italic;
   font-size: 1.3em;
