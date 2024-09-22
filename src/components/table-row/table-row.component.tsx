@@ -70,7 +70,7 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
       (item.rowNumber === index + 1 &&
         goals.home !== null &&
         goals.away !== null) ||
-      (item.rowNumber + 157 === index + 1 &&
+      (item.rowNumber + 175 === index + 1 &&
         goals.home !== null &&
         goals.away !== null)
     ) {
