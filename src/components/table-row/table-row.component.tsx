@@ -152,6 +152,8 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
           {rowForecastMap.map((item) => {
             if (item.rowNumber === index + 1) {
               return <span key={item.rowNumber}>{item.forecast}</span>;
+            } else if (item.rowNumber + 175 === index + 1) {
+              return <span key={item.rowNumber + 175}>{item.forecast}</span>;
             }
             return null;
           })}
