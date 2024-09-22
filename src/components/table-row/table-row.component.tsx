@@ -65,13 +65,14 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
   const flagStyles = [styles.center, styles.flag];
   const forecastStyles = [styles.center, styles.forecast];
 
-  for (let i = 0; i < index + 1; i++) {
-    if (i === 175) i = 0;
-    const item = rowForecastMap[i];
+  rowForecastMap.forEach((item) => {
     if (
-      item.rowNumber === index + 1 &&
-      goals.home !== null &&
-      goals.away !== null
+      (item.rowNumber === index + 1 &&
+        goals.home !== null &&
+        goals.away !== null) ||
+      (item.rowNumber + 157 === index + 1 &&
+        goals.home !== null &&
+        goals.away !== null)
     ) {
       switch (item.forecast) {
         case "1/X":
@@ -99,7 +100,7 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
           break;
       }
     }
-  }
+  });
 
   useEffect(() => {
     setIsLive(
