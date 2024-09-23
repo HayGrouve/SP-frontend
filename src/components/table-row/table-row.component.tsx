@@ -26,9 +26,6 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
   const [predictionsModalData, setPredictionsModalData] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const forecastsCount = React.useRef(0);
-  const correctForecastsCount = React.useRef(0);
-
   const getPrediction = async (
     e: React.MouseEvent<HTMLTableDataCellElement, MouseEvent>
   ) => {
@@ -77,12 +74,34 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
         goals.home !== null &&
         goals.away !== null)
     ) {
+      //add 1 to the forecast count in sessionStorage
+
+      const forecastsCount = JSON.parse(
+        sessionStorage.getItem("forecastsCount") || "0"
+      );
+      const correctForecastsCount = JSON.parse(
+        sessionStorage.getItem("correctForecastsCount") || "0"
+      );
+
       forecastsCount.current++;
+      sessionStorage.setItem(
+        "forecastsCount",
+        JSON.stringify({
+          forecastsCount: forecastsCount.current,
+        })
+      );
+
       switch (item.forecast) {
         case "1/X":
           if (goals.home > goals.away || goals.home === goals.away) {
             forecastStyles.push(styles.bgGreen);
             correctForecastsCount.current++;
+            sessionStorage.setItem(
+              "correctForecastsCount",
+              JSON.stringify({
+                correctForecastsCount: correctForecastsCount.current,
+              })
+            );
           } else {
             forecastStyles.push(styles.bgRed);
           }
@@ -91,6 +110,12 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
           if (goals.home < goals.away || goals.home === goals.away) {
             forecastStyles.push(styles.bgGreen);
             correctForecastsCount.current++;
+            sessionStorage.setItem(
+              "correctForecastsCount",
+              JSON.stringify({
+                correctForecastsCount: correctForecastsCount.current,
+              })
+            );
           } else {
             forecastStyles.push(styles.bgRed);
           }
@@ -99,6 +124,12 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
           if (goals.home > goals.away || goals.home < goals.away) {
             forecastStyles.push(styles.bgGreen);
             correctForecastsCount.current++;
+            sessionStorage.setItem(
+              "correctForecastsCount",
+              JSON.stringify({
+                correctForecastsCount: correctForecastsCount.current,
+              })
+            );
           } else {
             forecastStyles.push(styles.bgRed);
           }
@@ -108,6 +139,14 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
       }
     }
   });
+
+  const forecastsCount = JSON.parse(
+    sessionStorage.getItem("forecastsCount") || "0"
+  );
+
+  const correctForecastsCount = JSON.parse(
+    sessionStorage.getItem("correctForecastsCount") || "0"
+  );
 
   const winRatePercentage = Math.round(
     (correctForecastsCount.current / forecastsCount.current) * 100
