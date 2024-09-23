@@ -11,13 +11,9 @@ import {
 } from "../types/footballFixtures";
 
 const contextDefaultValues: FootballFixturesContextState = {
-  totalForecasts: 0,
-  totalCorrectForecasts: 0,
   fixtures: [],
   isLoading: { loading: false, isFirstComponentMount: true },
   setFootballFixtures: () => {},
-  incrementTotalForecasts: () => {},
-  incrementTotalCorrectForecasts: () => {},
 };
 
 export const FootballFixturesContext =
@@ -28,12 +24,6 @@ const FootballFixturesProvider: FC = ({ children }) => {
     contextDefaultValues.fixtures
   );
   const [isLoading, setIsLoading] = useState(contextDefaultValues.isLoading);
-  const [totalForecasts, setTotalForecasts] = useState(
-    contextDefaultValues.totalForecasts
-  );
-  const [totalCorrectForecasts, setTotalCorrectForecasts] = useState(
-    contextDefaultValues.totalCorrectForecasts
-  );
 
   const sortFixtures = (fixtures: FootballFixturesContextStateType[]) => {
     return [...fixtures].sort(function (a, b) {
@@ -75,17 +65,9 @@ const FootballFixturesProvider: FC = ({ children }) => {
   return (
     <FootballFixturesContext.Provider
       value={{
-        totalForecasts: 0,
-        totalCorrectForecasts: 0,
         fixtures,
         isLoading,
         setFootballFixtures,
-        incrementTotalForecasts: () => {
-          setTotalForecasts(totalForecasts + 1);
-        },
-        incrementTotalCorrectForecasts: () => {
-          setTotalCorrectForecasts(totalCorrectForecasts + 1);
-        },
       }}
     >
       {children}

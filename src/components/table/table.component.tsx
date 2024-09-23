@@ -10,8 +10,7 @@ interface IProps {
 
 const Table: React.FC<IProps> = ({ title, isGlobalFootball }) => {
   const id: string = "table";
-  const { fixtures, isLoading, totalCorrectForecasts, totalForecasts } =
-    useContext(FootballFixturesContext);
+  const { fixtures, isLoading } = useContext(FootballFixturesContext);
 
   const scrollIntoLive = () => {
     const liveElement = document
@@ -156,7 +155,6 @@ const Table: React.FC<IProps> = ({ title, isGlobalFootball }) => {
                 ))}
         </tbody>
       </table>
-      <p>Win rate: {Math.round(totalCorrectForecasts / totalForecasts)}</p>
     </div>
   );
 };
