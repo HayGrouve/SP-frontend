@@ -36,6 +36,19 @@ const Table: React.FC<IProps> = ({ title, isGlobalFootball }) => {
       </div>
     );
 
+  /* Loop over the tbody count how many forecasts are there and how many have the bgGreen class */
+  const tbody = document.querySelector("tbody");
+  const tr = tbody ? tbody.querySelectorAll("tr") : [];
+  let forecastCount = 0;
+  let bgGreenCount = 0;
+  tr.forEach((item) => {
+    const forecast = item.querySelector(".forecast");
+    if (forecast) {
+      forecastCount++;
+      if (forecast.classList.contains("bgGreen")) bgGreenCount++;
+    }
+  });
+
   return (
     <div id={`${id}-container`}>
       <div className={styles.container}>
@@ -155,7 +168,7 @@ const Table: React.FC<IProps> = ({ title, isGlobalFootball }) => {
                 ))}
         </tbody>
       </table>
-      <p>Win rate: 84% </p>
+      <p>Win rate: {bgGreenCount / forecastCount} </p>
     </div>
   );
 };
