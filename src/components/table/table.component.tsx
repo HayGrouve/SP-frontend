@@ -19,9 +19,6 @@ const Table: React.FC<IProps> = ({ title, isGlobalFootball }) => {
     window.scroll({ top: liveElement?.top! - 68, behavior: "smooth" });
   };
 
-  //get winRate from session storage
-  const winRate = sessionStorage.getItem("winRate");
-
   useEffect(() => {
     console.log(fixtures);
   }, [fixtures]);
@@ -158,7 +155,7 @@ const Table: React.FC<IProps> = ({ title, isGlobalFootball }) => {
                 ))}
         </tbody>
       </table>
-      <p>Win rate: {winRate} </p>
+      <p>Win rate: 84% </p>
     </div>
   );
 };
