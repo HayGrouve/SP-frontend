@@ -1,10 +1,11 @@
 import _ from "lodash";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { FootballFixturesContextStateType } from "../../types/footballFixtures";
 import PredictionsModal from "../predictions-modal/predictionsModal.component";
 
 import styles from "./table-row.module.css";
 import { rowForecastMap } from "../../utils/combineContextProviders";
+import { FootballFixturesContext } from "../../contexts/footballFixturesContext";
 
 interface ITableRowProps {
   index: number;
@@ -21,6 +22,9 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
     dtd,
     goals,
   } = fixtureItem;
+
+  const { incrementTotalCorrectForecasts, incrementTotalForecasts } =
+    useContext(FootballFixturesContext);
 
   const [isLive, setIsLive] = useState(false);
   const [predictionsModalData, setPredictionsModalData] = useState({});
@@ -74,10 +78,12 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
         goals.home !== null &&
         goals.away !== null)
     ) {
+      incrementTotalForecasts();
       switch (item.forecast) {
         case "1/X":
           if (goals.home > goals.away || goals.home === goals.away) {
             forecastStyles.push(styles.bgGreen);
+            incrementTotalCorrectForecasts();
           } else {
             forecastStyles.push(styles.bgRed);
           }
@@ -85,6 +91,7 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
         case "X/2":
           if (goals.home < goals.away || goals.home === goals.away) {
             forecastStyles.push(styles.bgGreen);
+            incrementTotalCorrectForecasts();
           } else {
             forecastStyles.push(styles.bgRed);
           }
@@ -92,6 +99,7 @@ export const TableRow: React.FC<ITableRowProps> = ({ index, fixtureItem }) => {
         case "1/2":
           if (goals.home > goals.away || goals.home < goals.away) {
             forecastStyles.push(styles.bgGreen);
+            incrementTotalCorrectForecasts();
           } else {
             forecastStyles.push(styles.bgRed);
           }

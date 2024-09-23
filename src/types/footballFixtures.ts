@@ -1,7 +1,11 @@
 export type FootballFixturesContextState = {
+  totalForecasts: number;
+  totalCorrectForecasts: number;
   fixtures: FootballFixturesContextStateType[];
   isLoading: { loading: boolean; isFirstComponentMount: boolean };
   setFootballFixtures: (fixtures: FootballFixturesContextStateType[]) => void;
+  incrementTotalForecasts: () => void;
+  incrementTotalCorrectForecasts: () => void;
 };
 
 export type FootballFixturesContextStateType = {
